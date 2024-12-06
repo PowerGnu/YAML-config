@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API to retrieve football match data based on teams or dates.
 servers:
-  - url: https://your-server.com  # Replace with your actual server URL if hosting an API
+  - url: https://yaml-config.onrender.com  # Replace with your actual server URL if hosting an API
 paths:
   /matches:
     get:
