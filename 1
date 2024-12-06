@@ -1,0 +1,82 @@
+openapi: 3.1.0
+info:
+  title: Match Data API
+  version: 1.0.0
+  description: API to retrieve football match data based on teams or dates.
+servers:
+  - url: https://your-server.com  # Replace with your actual server URL if hosting an API
+paths:
+  /matches:
+    get:
+      operationId: getMatches
+      summary: Retrieve match data
+      parameters:
+        - name: team
+          in: query
+          description: Name or short name of the team.
+          required: false
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Date of the match in YYYY-MM-DD format.
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: A list of matches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    home_team:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        short_title:
+                          type: string
+                    away_team:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        short_title:
+                          type: string
+                    goals:
+                      type: object
+                      properties:
+                        home:
+                          type: integer
+                        away:
+                          type: integer
+                    xG:
+                      type: object
+                      properties:
+                        home:
+                          type: number
+                        away:
+                          type: number
+                    datetime:
+                      type: string
+                      format: date-time
+                    forecast:
+                      type: object
+                      properties:
+                        win:
+                          type: number
+                        draw:
+                          type: number
+                        loss:
+                          type: number
