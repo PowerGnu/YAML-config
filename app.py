@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import os
 
 app = Flask(__name__)
 
@@ -23,7 +24,7 @@ matches = [
 def get_matches():
     date = request.args.get('date')
     team = request.args.get('team')
-    
+
     # Filter matches by date and/or team
     filtered_matches = [
         match for match in matches
@@ -33,4 +34,7 @@ def get_matches():
     return jsonify(filtered_matches)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Get the PORT environment variable from Render
+    port = int(os.environ.get("PORT", 5000))
+    # Bind to 0.0.0.0 to allow external connections
+    app.run(host='0.0.0.0', port=port)
