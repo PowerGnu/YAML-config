@@ -1,2 +1,2 @@
 Flask
-pyunderstat
+git+https://github.com/hmallen/understatapi.git
